@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Test Musical</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        #quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .question-block {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-block:last-child {
+            border-bottom: none;
+        }
+        h3 {
+            color: #007bff;
+        }
+        audio {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h1>Blind Test Musical</h1>
+
+    <div id="question1" class="question-block">
+        <h3>Question 1/5</h3>
+        <p>Un retour en 2008-2009...Écoute cet extrait et devine l'artiste ou le titre :</p>
+        <audio id="audio1" controls src="">Votre navigateur ne supporte pas l'élément audio.</audio>
+        <label for="answer1">Votre réponse :</label>
+        <input type="text" id="answer1" name="answer1" placeholder="Artiste ou Titre">
+        <button type="button" onclick="checkAnswer(1)">Valider</button>
+        <div id="feedback1" class="feedback hidden"></div>
+        <button id="next1" type="button" onclick="nextQuestion(1)" class="hidden">Question suivante</button>
+    </div>
+
+    <div id="question2" class="question-block hidden">
+        <h3>Question 2/5</h3>
+        <p>Une claque en 2014... Écoute cet extrait et devine l'artiste ou le titre :</p>
+        <audio id="audio2" controls src="">Votre navigateur ne supporte pas l'élément audio.</audio>
+        <label for="answer2">Votre réponse :</label>
+        <input type="text" id="answer2" name="answer2" placeholder="Artiste ou Titre">
+        <button type="button" onclick="checkAnswer(2)">Valider</button>
+        <div id="feedback2" class="feedback hidden"></div>
+        <button id="next2" type="button" onclick="nextQuestion(2)" class="hidden">Question suivante</button>
+    </div>
+
+    <div id="question3" class="question-block hidden">
+        <h3>Question 3/5</h3>
+        <p>Un classique pour les connaisseurs... Écoute cet extrait et devine l'artiste ou le titre :</p>
+        <audio id="audio3" controls src="">Votre navigateur ne supporte pas l'élément audio.</audio>
+        <label for="answer3">Votre réponse :</label>
+        <input type="text" id="answer3" name="answer3" placeholder="Artiste ou Titre">
+        <button type="button" onclick="checkAnswer(3)">Valider</button>
+        <div id="feedback3" class="feedback hidden"></div>
+        <button id="next3" type="button" onclick="nextQuestion(3)" class="hidden">Question suivante</button>
+    </div>
+
+    <div id="question4" class="question-block hidden">
+        <h3>Question 4/5</h3>
+        <p>Retour sur une période insouciante... Écoute cet extrait et devine l'artiste ou le titre :</p>
+        <audio id="audio4" controls src="">Votre navigateur ne supporte pas l'élément audio.</audio>
+        <label for="answer4">Votre réponse :</label>
+        <input type="text" id="answer4" name="answer4" placeholder="Artiste ou Titre">
+        <button type="button" onclick="checkAnswer(4)">Valider</button>
+        <div id="feedback4" class="feedback hidden"></div>
+        <button id="next4" type="button" onclick="nextQuestion(4)" class="hidden">Question suivante</button>
+    </div>
+
+    <div id="question5" class="question-block hidden">
+        <h3>Question 5/5</h3>
+        <p>Notre prochain projet à deux sur un autre épisode! Écoute cet extrait et devine l'artiste ou le titre :</p>
+        <audio id="audio5" controls src="">Votre navigateur ne supporte pas l'élément audio.</audio>
+        <label for="answer5">Votre réponse :</label>
+        <input type="text" id="answer5" name="answer5" placeholder="Artiste ou Titre">
+        <button type="button" onclick="checkAnswer(5)">Valider</button>
+        <div id="feedback5" class="feedback hidden"></div>
+        <button id="next5" type="button" onclick="finishQuiz()" class="hidden">Terminer le Quiz</button>
+    </div>
+
+    <div id="quizEnd" class="hidden">
+        <h2>Félicitation!</h2>
+        <p>Tu viens de parcourir quelques années de vie en quelques instants... Il en faut du courage! Tu viens d'obtenir la triforce du courage!</p>
+	<img src="https://www.dropbox.com/scl/fi/ko8niodh4nn488ogp3t7y/Triforce_courage.jpg?rlkey=ld3k4s4ff34t3dtabu0oh0md2&raw=1" alt="Triforce de la Force" width="200" height="200">
+    </div>
+
+</div>
+
+<script>
+    const quizData = [
+        { audioSrc: "https://www.dropbox.com/scl/fi/jsdxpfc1fcwm9dsobfvqg/Song1_mp3.mp3?rlkey=qydvqoo2gw2h1nellg0ao9c47&raw=1", artist: "Daan", title: "Housewife", displayAnswer: "Daan - Housewife" },
+        { audioSrc: "https://www.dropbox.com/scl/fi/1wd8jk00rivbjxly42xny/Song2_mp3.mp3?rlkey=lj39s7iyw7yku4bnbyr4txed7&raw=1", artist: "Hans Zimmer", title: "Interstellar", displayAnswer: "Hans Zimmer - Interstellar" },
+        { audioSrc: "https://www.dropbox.com/scl/fi/xduvbt3tehxby0if15z1j/Song3_mp3.mp3?rlkey=citidzd71los9aiffi2eullry&raw=1", artist: "Paul Kalkbrenner", title: "Sky & Sand", displayAnswer: "Paul Kalkbrenner - Sky & Sand" },
+        { audioSrc: "https://www.dropbox.com/scl/fi/sbr48hlkru4vxz3ufbchm/Song4_mp3.mp3?rlkey=ymwyutwldcih1hd6qjuc5irv1&raw=1", artist: "Wii", title: "Mario Kart", displayAnswer: "Wii - Mario Kart" },
+        { audioSrc: "https://www.dropbox.com/scl/fi/v1z2kgeg4iw1il5p2kzxv/Song5_mp3.mp3?rlkey=84obycvu3evixkfqlrjj475qg&raw=1", artist: "Zelda", title: "Skyward sword", displayAnswer: "Zelda - Skyward sword" }
+    ];
+
+    let currentQuestion = 1;
+    const totalQuestions = 5;
+
+    function loadQuestion(questionNumber) {
+        for (let i = 1; i <= totalQuestions; i++) {
+            document.getElementById('question' + i).classList.add('hidden');
+        }
+        const questionDiv = document.getElementById('question' + questionNumber);
+        if (questionDiv) {
+            questionDiv.classList.remove('hidden');
+            const audioElement = document.getElementById('audio' + questionNumber);
+            if (audioElement) {
+                audioElement.src = quizData[questionNumber - 1].audioSrc;
+                audioElement.load(); // Important pour recharger la source
+                // audioElement.play(); // Optionnel: pour lancer la lecture automatiquement
+            }
+        }
+    }
+
+    function checkAnswer(questionNumber) {
+        const userAnswer = document.getElementById('answer' + questionNumber).value.trim().toLowerCase();
+        const correctAnswerArtist = quizData[questionNumber - 1].artist.toLowerCase();
+        const correctAnswerTitle = quizData[questionNumber - 1].title.toLowerCase();
+        const displayAnswer = quizData[questionNumber - 1].displayAnswer;
+
+        const feedbackDiv = document.getElementById('feedback' + questionNumber);
+        const nextButton = document.getElementById('next' + questionNumber);
+        const submitButton = document.querySelector('#question' + questionNumber + ' button[type="button"][onclick^="checkAnswer"]');
+
+        if (userAnswer === correctAnswerArtist || userAnswer === correctAnswerTitle) {
+            feedbackDiv.textContent = "Bonne réponse ! C'était bien : " + displayAnswer;
+            feedbackDiv.className = 'feedback correct';
+        } else {
+            feedbackDiv.textContent = "Dommage ! La bonne réponse était : " + displayAnswer;
+            feedbackDiv.className = 'feedback incorrect';
+        }
+        feedbackDiv.classList.remove('hidden');
+        if (nextButton) {
+            nextButton.classList.remove('hidden');
+        }
+        if (submitButton) {
+            submitButton.disabled = true;
+        }
+        document.getElementById('answer' + questionNumber).disabled = true;
+
+        const currentAudio = document.getElementById('audio' + questionNumber);
+        if (currentAudio) {
+            currentAudio.pause();
+        }
+    }
+
+    function nextQuestion(currentQuestionNumber) {
+        const prevAudio = document.getElementById('audio' + currentQuestionNumber);
+        if (prevAudio) {
+            prevAudio.pause();
+            prevAudio.currentTime = 0;
+        }
+
+        document.getElementById('question' + currentQuestionNumber).classList.add('hidden');
+        currentQuestion++;
+        if (currentQuestion <= totalQuestions) {
+            loadQuestion(currentQuestion);
+        } else {
+            finishQuiz();
+        }
+    }
+
+    function finishQuiz() {
+        for (let i = 1; i <= totalQuestions; i++) {
+            const qDiv = document.getElementById('question' + i);
+            if(qDiv) qDiv.classList.add('hidden');
+        }
+        document.getElementById('quizEnd').classList.remove('hidden');
+    }
+
+    window.onload = function() {
+        loadQuestion(currentQuestion);
+    };
+</script>
+
+</body>
+</html>

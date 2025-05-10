@@ -1,0 +1,64 @@
+<div id="quiz-container">
+    <div id="question1">
+        <h3>Question 1</h3>
+        <p>Arnaud: "Hey Dje, On m'a parlé de Game of Thrones. Est-ce que tu me conseilles la série ? Et tu ne penses pas que cela pourrait me faire peur ? "</p>
+        <p>Dje: "Oui, c'est génial! Je te conseille vraiment et il n'y aucune raison que tu aies peur."</p>
+        <p>Arnaud: "Trop bien! Il n'y a donc pas de mort-vivants dans la série ?"</p>
+        <p>Dje: "Non non. Il y a juste quelques scènes dans la première saison mais c'est anecdoctique".</p>
+        <p>Arnaud: "Top! Je sais ce que je vais regarder ce soir pour me détendre avant de dormir"</p>
+        <p><strong>Combien de mort-vivants y a-t-il dans la première scène de Game of Thrones ?</strong></p>
+        <p><a href="https://www.youtube.com/watch?v=Gomsbi4I9rc" target="_blank" rel="noopener noreferrer">Voir la scène sur YouTube</a></p>
+        
+        <label for="answer1">Votre réponse :</label>
+        <input type="number" id="answer1" name="answer1" placeholder="Entrez un nombre">
+        <button type="button" onclick="checkAnswer1()">Valider Q1</button>
+        
+        <p id="feedback1" style="color: red; font-weight: bold;"></p>
+    </div>
+
+    <div id="question2" style="display:none;">
+    <h3>Bravo</h3>
+    <p><em>Ton courage d'avoir visualisé cette vidéo remplie de mort-vivants te permet d'obtenir la triforce de la force!</em></p>
+    <img src="https://www.dropbox.com/scl/fi/s4a2querm6fts0k96r16m/Triforce_force.jpg?rlkey=0g1nlctvha3gtgqh8w8xpkc83&raw=1" alt="Triforce de la Force" width="200" height="200">
+    </div>
+</div>
+
+<script>
+    function checkAnswer1() {
+        var answer = document.getElementById('answer1').value;
+        var feedback = document.getElementById('feedback1');
+        var question1Div = document.getElementById('question1');
+        var question2Div = document.getElementById('question2');
+
+        if (answer === "2") {
+            feedback.textContent = ""; 
+            question1Div.style.display = 'none'; 
+            question2Div.style.display = 'block'; 
+        } else {
+            feedback.textContent = "Réponse incorrecte. Essayez encore ou revoyez la vidéo.";
+        }
+    }
+
+    function checkAnswer2() {
+        var answerQ2 = document.getElementById('answer2').value;
+        var feedbackQ2 = document.getElementById('feedback2');
+        // var question2Div = document.getElementById('question2'); // Pas utilisé dans cette version simple
+        var quizResultDiv = document.getElementById('quiz-result');
+        var finalMessageP = document.getElementById('finalMessage');
+
+        // Remplacez "L'hiver vient" par la bonne réponse attendue pour votre question 2 (en minuscules pour ignorer la casse)
+        var correctAnswerQ2 = "l'hiver vient"; 
+
+        if (answerQ2.toLowerCase().trim() === correctAnswerQ2) {
+            feedbackQ2.textContent = "Bonne réponse !";
+            feedbackQ2.style.color = "green";
+            finalMessageP.textContent = "Félicitations, vous avez terminé le quiz avec succès !";
+        } else {
+            feedbackQ2.textContent = "Réponse incorrecte pour la Question 2.";
+            feedbackQ2.style.color = "red";
+            finalMessageP.textContent = "Vous avez terminé le quiz, mais la réponse à la question 2 n'était pas correcte. Essayez encore !";
+        }
+        
+        quizResultDiv.style.display = 'block'; 
+    }
+</script>
